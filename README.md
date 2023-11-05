@@ -1,6 +1,6 @@
 # -MaxwellSolver_NERS570
 
- propose to revisit the past FDTD program I created by completely recoding it,
+I propose to revisit the past FDTD program I created by completely recoding it,
 and applying the development principles I learned from this class to improve performance, readability,
 and alignment with standard development principles. I again will be basing my solutions on the
 differential form of Maxwell’s Equations. To avoid working with very large and small numbers, I
@@ -26,6 +26,8 @@ to enhance the realism of the simulation, the boundaries of the computational do
 with perfectly-matched layers, or PMLs. These PMLs absorb electromagnetic waves, mimicking the
 effect of an open space and preventing reflections that could distort the simulation results.
 
+#################################
+TASK LIST:
 Workflows: Create a GitHub Repository containing all source code and detailed descriptions
 of program functionalities. This will assist in allowing progress to be tracked and program
 functionality to be documented. This will also allow for the project to be developed from multiple
