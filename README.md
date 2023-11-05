@@ -28,18 +28,24 @@ effect of an open space and preventing reflections that could distort the simula
 
 #################################
 TASK LIST:
+
 Workflows: Create a GitHub Repository containing all source code and detailed descriptions
 of program functionalities. This will assist in allowing progress to be tracked and program
 functionality to be documented. This will also allow for the project to be developed from multiple
 workstations.
+
 • Object Oriented Programming and Design: Verbosely comment on each aspect of the program
 to ensure high readability and to simplify functionality to be added to it in the future.
+
 • Object Oriented Programming and Design: Create a UML diagram of the project. This will
 ensure that the structure of the program is clear from the start.
+
 • Automated Testing Infrastructure: Create unit tests that compare quantities calculated by the
 program with those obtained theoretically.
+
 • Automated Testing Infrastructure: Implement a function that calculates the total energy stored
 in the simulation to ensure energy is conserved. This is necessary since the program models a
 physical system and energy must be conserved throughout the simulation.
+
 • Parallel Computing: Use OpenMP to optimize loops used by the program, allowing for precise
 calculations to be run within a shorter time.
