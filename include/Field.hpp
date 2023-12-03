@@ -1,16 +1,8 @@
-#ifndef FIELD_H
-#define FIELD_H
+#include <array>
 
-#include "VectorField.hpp"
+struct Field {
+    std::array<float, 3> E; // Electric field components (Ex, Ey, Ez)
+    std::array<float, 3> B; // Magnetic field components (Bx, By, Bz)
 
-class Field {
-public:
-    Field();
-    // Methods to manage fields
-
-private:
-    VectorField E_Field;
-    VectorField B_Field;
+    Field() : E({ 0.0f, 0.0f, 0.0f }), B({ 0.0f, 0.0f, 0.0f }) {}
 };
-
-#endif // FIELD_H
