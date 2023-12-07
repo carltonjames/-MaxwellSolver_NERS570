@@ -1,32 +1,36 @@
 #ifndef MESH_H
 #define MESH_H
 
+#include <cmath>
+#include <array>
 #include <vector>
 #include "Source.hpp"
-#include "Mesh.hpp"
+#include "Field.hpp"
 
+using namespace std;
 class Mesh {
-public:
-    Mesh(float dimensions, int divs);
-    float* physicalLoc(int i, int j, int k) const;
-    int* discreteLoc(float i, float j, float k) const;
-    void addSource(const Source& source);
-    void removeSource(int sourceID);
-    float* calculateField(int i, int j, int k); // calculate the field at (i, j, k) and return it
-    void calculateField(); // Calculate the field everywhere within the mesh
-    std::vector<Source> sources;
-    
-    void Mesh::addSource(const Source& source);
-
-    void Mesh::removeSource(int sourceID);
-
-    void Mesh::calculateField();
-
-    void Mesh::calculateField(int i, int j, int k);
-
 private:
-    int xDim, yDim, zDim, n;
-    std::vector<std::vector<std::vector<std::array<float, 6>>>> fList;
+    int n;
+    std::array<float, 3> dimensions;
+    double scale;
+    std::vector<std::unique_ptr<Source>> sources; // list of sources within simulation
+    vector<vector<vector<Field>>> map; // Defines EM field at all points in space
+
+    void zeroMap();
+
+public:
+    Field getField(std::array<float, 3> loc) const;
+    vector<vector<vector<Field>>>& getMap();
+    void setSources((std::vector<std::unique_ptr<Source>>& sourceList);
+    void addSource(std::unique_ptr<Source> source);
+    void removeSource(size_t sourceID);
+    float* physicalLoc(std::array<int, 3> loc) const;
+    int* discreteLoc(std::array<float, 3> loc) const;
+
+    Mesh(std::array<float, 3> dimensions, int divs) : dimensions(dimensions) {}
+
+    ~Mesh(){}
 };
+
 
 #endif // MESH_H

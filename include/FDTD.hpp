@@ -9,13 +9,11 @@ class FDTD {
 public:
     FDTD();
     void runSimulation();
-    // Other necessary methods
 
 private:
     Mesh* mesh;
     Field* field;
     Source* source;
-    // Other necessary attributes
 };
 
 #endif // FDTD_H

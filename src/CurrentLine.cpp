@@ -2,15 +2,22 @@
 #include <vector>
 #include <iostream>
 
+extern double delta;
+extern float timeStep;
+extern float c;
+extern float e;
+extern float m_e;
+
 class CurrentLine : public Source {
 public:
     CurrentLine() {
         charge = 1.0f;
-        location = { 0, 0, 0 };
-        distributionFlag = true;
-        dynamic = true;
-        free = true;
+        location = { 0.0f, 0.0f, 0.0f };
+        distribution = true;
+        dynamic = false;
+        isFree = false;
         mass = 1.0f;
+        name = "CurrentLine";
     }
 
     currentLine() {
@@ -33,7 +40,7 @@ public:
         }
     }
 
-    std::array<float, 3> velocity(int i, int j, int k) const override {
+    std::array<float, 3> velocity(std::array<int, 3> loc) const override {
         std::array<float, 3> vel = { 0.0f, 0.0f, 0.0f };
         return vel;
     }
