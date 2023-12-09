@@ -1,11 +1,6 @@
 #include "Mesh.hpp"
 #include <cmath>
-
-extern double delta;
-extern float timeStep;
-extern float c;
-extern float e;
-extern float m_e;
+#include "globals.hpp"
 
 using namespace std;
 

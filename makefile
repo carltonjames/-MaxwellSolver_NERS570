@@ -12,8 +12,8 @@ GTEST_SRCS_ = $(GTEST_DIR)/src/*.cc $(GTEST_DIR)/src/*.h $(GTEST_HEADERS)
 all: main test
 
 # Main application
-main: src/FDTD.o src/Point.o src/CurrentLine.o src/Mesh.o src/main.o src/Source.o
-	$(CXX) $(CXXFLAGS) -o main src/FDTD.o src/main.o src/Mesh.o src/Source.o src/Point.o src/CurrentLine.o
+main: src/FDTD.o src/Point.o src/CurrentLine.o src/Mesh.o src/main.o src/Source.o src/globals.o
+	$(CXX) $(CXXFLAGS) -o main src/FDTD.o src/main.o src/Mesh.o src/Source.o src/Point.o src/CurrentLine.o src/globals.o
 
 # Test
 test: src/PointTest.o src/CurrentLineTest.o
@@ -37,6 +37,9 @@ src/Mesh.o: src/Mesh.cpp include/Mesh.hpp
 
 src/Source.o: src/Source.cpp include/Source.hpp
 	$(CXX) $(CXXFLAGS) -c src/Source.cpp -o src/Source.o
+
+src/globals.o: src/globals.cpp include/globals.hpp
+	$(CXX) $(CXXFLAGS) -c src/globals.cpp -o src/globals.o
 
 src/PointTest.o: tests/PointTest.cpp
 	$(CXX) $(CXXFLAGS) -I$(GTEST_DIR)/include -c tests/PointTest.cpp -o src/PointTest.o

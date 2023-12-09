@@ -7,13 +7,7 @@
 #include "Point.hpp"
 #include "FDTD.hpp"
 #include "CurrentLine.hpp"
-
-
-static double delta = 0.0;
-static const float timeStep = 0.001f; // sec
-static const float c = 2.9979f * powf(10.0f, 10.0f); // cm/sec
-static const float e = 4.8029f * powf(10.0f, -10.0f); // statcoloumbs
-static const float m_e = 9.1083f * powf(10.0f, -13.0f); // MeV-cm
+#include "globals.hpp"
 
 using namespace std;
 int main(int argc, char** argv) {
