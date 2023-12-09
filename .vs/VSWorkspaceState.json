@@ -2,8 +2,9 @@
   "ExpandedNodes": [
     "",
     "\\include",
-    "\\src"
+    "\\src",
+    "\\tests"
   ],
-  "SelectedNode": "\\include\\Mesh.hpp",
+  "SelectedNode": "\\include\\Source.hpp",
   "PreviewInSolutionExplorer": false
 }

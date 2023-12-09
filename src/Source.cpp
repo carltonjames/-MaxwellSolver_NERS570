@@ -1,40 +1,20 @@
-#include <iostream>
-#include <vector>
-#include <array>
-#include <string>
+#include "Source.hpp"
 
-class Source {
-protected:
-    float charge = 0.0f;
-    std::array<float, 3> location = { 0.0f, 0.0f, 0.0f };
-    std::array<float, 3> velocity = { 0.0f, 0.0f, 0.0f };
-    bool distribution = false;
-    bool dynamic = false;
-    bool isFree = false;
-    bool neutral = false;
-    float mass = 0.0f;
-    
+std::array<float, 3> Source::getVelocity(std::array<float, 3> loc) const {
+    // Implementation for getVelocity with location parameter
+    // For example, return velocity if loc matches the source's location
+    return (loc == location) ? velocity : std::array<float, 3>{0.0f, 0.0f, 0.0f};
+}
 
-public:
-    Source() {}
-    virtual ~Source() {}
+std::array<float, 3> Source::getVelocity() const {
+    return velocity;
+}
 
-    virtual std::array<float, 3> getVelocity() const = 0;
-    virtual float getCharge(std::array<float, 3>) const = 0;
-    virtual std::string getName() const = 0;
-    virtual float getMass(std::array<float, 3>) const = 0;
-    virtual string name;
-
-    void setLocation(std::array<float, 3> loc);
-    void setCharge(float q);
-    float getCharge() const;
-    bool isDistribution() const;
-    bool isDynamic() const;
-    bool isNeutral() const;
-    bool isFree() const;
-    float getMass() const;
-    std::array<float, 3> getLocation() const;
-};
+float Source::getCharge(std::array<float, 3> loc) const {
+    // Implementation for getCharge with location parameter
+    // For example, return charge if loc matches the source's location
+    return (loc == location) ? charge : 0.0f;
+}
 
 void Source::setLocation(std::array<float, 3> loc) {
     location = loc;
@@ -42,6 +22,10 @@ void Source::setLocation(std::array<float, 3> loc) {
 
 void Source::setCharge(float q) {
     charge = q;
+}
+
+void Source::setVelocity(const std::array<float, 3>& vel) {
+    velocity = vel;
 }
 
 float Source::getCharge() const {
@@ -60,14 +44,24 @@ bool Source::isNeutral() const {
     return neutral;
 }
 
-bool Source::isFree() const {
-    return isFree;
-}
-
 float Source::getMass() const {
     return mass;
 }
 
+bool Source::isFree() const {
+    return boolFree;
+}
+
 std::array<float, 3> Source::getLocation() const {
     return location;
+}
+
+std::string Source::getName() const {
+    return name;
+}
+
+float Source::getMass(std::array<float, 3> loc) const {
+    // Implementation for getMass with location parameter
+    // For example, return mass if loc matches the source's location
+    return (loc == location) ? mass : 0.0f;
 }
