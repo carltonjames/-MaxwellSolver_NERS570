@@ -3,7 +3,7 @@
 
 #include <array>
 #include <string>
-
+#include <Field.hpp>
 class Source {
 protected:
     float charge = 0.0f;
@@ -15,8 +15,13 @@ protected:
     float mass = 0.0f;
     bool boolFree = false;
     std::string name;
+    char special = ' ';
+
 
 public:
+    float t0 = 10.0f;
+    float spread = 6.0f * 100.0f;
+
     Source() {}
     virtual ~Source() {}
 
@@ -35,6 +40,7 @@ public:
     std::array<float, 3> getLocation() const;
     std::string getName() const;
     virtual float getMass(std::array<float, 3> loc) const;
+    virtual Field getField(int T);
 };
 
 #endif // SOURCE_H

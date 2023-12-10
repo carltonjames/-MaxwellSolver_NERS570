@@ -24,8 +24,8 @@ TEST_F(PointTest, GetName) {
 }
 
 TEST_F(CurrentLineTest, ChargeDistribution) {
-    EXPECT_FLOAT_EQ(currentLine.getCharge({ 50, 50, 10 }), 1.0f); // Assuming charge is distributed along a line
-    EXPECT_FLOAT_EQ(currentLine.getCharge({ 51, 50, 10 }), 0.0f); // Outside the line
+    EXPECT_FLOAT_EQ(currentLine.getCharge({ 50, 50, 10 }), 1.0f);
+    EXPECT_FLOAT_EQ(currentLine.getCharge({ 51, 50, 10 }), 0.0f);
 }
 
 TEST_F(CurrentLineTest, GetName) {

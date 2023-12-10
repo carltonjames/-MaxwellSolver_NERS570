@@ -57,4 +57,8 @@ libgtest.a : gtest-all.o
 
 # Clean
 clean:
-	rm -f src/*.o main test libgtest.a
+	del /F /Q src\*.o
+	del /F /Q main.exe
+	del /F /Q test.exe
+	del /F /Q libgtest.a
+#rm -f src/*.o

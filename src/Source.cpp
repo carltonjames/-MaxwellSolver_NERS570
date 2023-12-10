@@ -61,7 +61,11 @@ std::string Source::getName() const {
 }
 
 float Source::getMass(std::array<float, 3> loc) const {
-    // Implementation for getMass with location parameter
-    // For example, return mass if loc matches the source's location
     return (loc == location) ? mass : 0.0f;
+}
+
+// Returns the field of a dipole. returns zero if the source
+// is not a dipole.
+Field Source::getField(int T) {
+    return Field();
 }

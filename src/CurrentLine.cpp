@@ -7,5 +7,5 @@ CurrentLine::CurrentLine() : Source() {
         boolFree = false;
         mass = 1.0f;
         name = "CurrentLine";
-    }
+}
 
