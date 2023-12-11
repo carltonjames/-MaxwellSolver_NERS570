@@ -1,52 +1,13 @@
-# -MaxwellSolver_NERS570
+The primary objective of this project was to simulate the dynamics of particles in free space under the influence of electromagnetic waves, thus exploring the characteristics of these systems to gain an understanding of their underlying characteristics, as well as insight to the limitations of the algorithm. This is unlike the typical use of FDTD within electromagnetism which often models wave absorption and scattering caused by materials of different electric permittivities. Due to this reason, capable preexisting software is not readily available, therefore the need for a personal implementation of FDTD presents itself. This implementation is a significant component of this project.
 
-I propose to revisit the past FDTD program I created by completely recoding it,
-and applying the development principles I learned from this class to improve performance, readability,
-and alignment with standard development principles. I again will be basing my solutions on the
-differential form of Maxwell’s Equations. To avoid working with very large and small numbers, I
-elect to write the program primarily using the Gaussian system of units and converting to SI units
-only when results are displayed to the user. Additionally, one of my physics professors has agreed to
-answer all questions that will arise as I complete this project.
+Since their discovery in the year 1865, Maxwell's equations (Shown in fig.\ref{max}) have revolutionized our understanding of all matter of nature that rely on electromagnetism. These equations have granted us a sophisticated understanding of light as electromagnetic waves, allowing intelligence when it comes to engineering systems that rely on communication from a distance. In cases where electromagnetism must be understood on a local level, Maxwell's equations also provide a deep understanding of the interactions that occur by allowing us to derive potentials that describe electromagnetic fields anywhere we are interested. These facts have led to the realization of a wide variety of advanced electronics of which we rely daily.
 
-The development process of this project will not start by solving the system in the three-dimensional
-case. Instead, the system will first be modeled in two dimensions, after which, the results will be
-tested. When, and only when, these tests are passed will development move on to solving the system
-in all three dimensions. This progression is designed to streamline the debugging process, allowing for
-the refinement of functions and objects in a controlled and manageable environment. For the same
-reasons, this program will not immediately support solving physical systems with changing charge
-and/or current distributions until results are verified for the static cases.
+Despite their profound impact, the complexity of Maxwell's equations, being a set of partial differential equations, poses challenges in finding analytical solutions. Often, these solutions are feasible only for oversimplified physical systems, which may not accurately represent real-world scenarios. Consequently, numerical methods have become the preferred approach for solving Maxwell's equations in practical applications. Among these methods, the finite-difference time-domain (FDTD) technique, also known as Yee's method, stands out for its effectiveness in simulating electromagnetic fields and waves.\cite{Schneider} This method's ability to handle complex geometries and materials makes it a versatile tool for a wide range of electromagnetic studies, from fundamental research to applied engineering.
 
-After this, the implementation of the FDTD algorithm will be standard. A three-dimensional mesh
-(A 3D array-like object) will be created which will contain all physical information about the system.
-That is to say, each cell of the mesh will contain its own value for the electric and magnetic strength
-and direction and information about its source (if one is present), while the index of the cell correlates
-to the region of space that it represents. For dynamic simulations, the program will calculate and
-apply forces and wave propagation in discrete time steps, which can be adjusted by the user. Finally,
-to enhance the realism of the simulation, the boundaries of the computational domain will be equipped
-with perfectly-matched layers, or PMLs. These PMLs absorb electromagnetic waves, mimicking the
-effect of an open space and preventing reflections that could distort the simulation results.
+The Finite-Difference Time-Domain (FDTD) method, particularly the Yee algorithm, is structured around a unique lattice known as the Yee cell. This cell is a cornerstone of the FDTD method, designed to discretize space for the numerical solution of Maxwell's equations. In a Yee cell, the electric and magnetic field components are staggered in both space and time. This means that each component of the electric field is located at the edges of a cubic cell, while the magnetic field components are positioned at the center of the cell's faces. 
 
-#################################
+The overall computational domain in FDTD is divided into a mesh of these Yee cells, creating a grid that covers the space where electromagnetic phenomena are to be simulated. Within this mesh, various objects with different electromagnetic properties can be introduced. These objects are characterized by their material parameters, such as permittivity and permeability, which influence how the electromagnetic fields interact with them. The resolution of this mesh determines the convergence of data generated by these simulations. A finer mesh increases the accuracy of the simulation at the cost of an increase in the time of the simulation. Because of this, satisfactory results using FDTD can be obtained by setting the resolution of the mesh equal to its relationship described by the Courant inequality.
 
-TASK LIST:
+The FDTD simulation also includes sources, which are used to introduce electromagnetic waves into the domain. These can be simple point sources or more complex structures that mimic real-world emitters. Boundary conditions are another critical aspect, designed to limit the computational domain while mimicking an open or closed environment. Perfectly Matched Layers (PMLs), are a commonly chosen boundary condition for FDTD solvers and have been chosen as the boundary for waves in this project. They are used to simulate open space by absorbing all outgoing waves, preventing reflections from re-entering the simulation. Other boundary conditions include Perfect Magnetic Conductors (PMCs), periodic boundaries, and symmetric boundaries. These are also common in FDTD simulations but they have not been implemented in this project, and therefore beyond the scope of this report.
 
-Workflows: Create a GitHub Repository containing all source code and detailed descriptions
-of program functionalities. This will assist in allowing progress to be tracked and program
-functionality to be documented. This will also allow for the project to be developed from multiple
-workstations.
-
-• Object Oriented Programming and Design: Verbosely comment on each aspect of the program
-to ensure high readability and to simplify functionality to be added to it in the future.
-
-• Object Oriented Programming and Design: Create a UML diagram of the project. This will
-ensure that the structure of the program is clear from the start.
-
-• Automated Testing Infrastructure: Create unit tests that compare quantities calculated by the
-program with those obtained theoretically.
-
-• Automated Testing Infrastructure: Implement a function that calculates the total energy stored
-in the simulation to ensure energy is conserved. This is necessary since the program models a
-physical system and energy must be conserved throughout the simulation.
-
-• Parallel Computing: Use OpenMP to optimize loops used by the program, allowing for precise
-calculations to be run within a shorter time.
+Symmetries are often present in electromagnetic simulations and can often be exploited to reduce computational overhead. If symmetry is present, then only a portion of the entire space needs to be simulated. This portion can be transformed to rebuild the physical model being replicated, further optimizing the computational process. This careful structuring of the Yee cell, mesh, objects, sources, and boundaries, while considering symmetries, makes the FDTD method a powerful tool for simulating a wide range of electromagnetic problems.
